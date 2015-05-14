@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
-include_package "_java"
+include_recipe "chef-bioinf-worker::_java"
 
 package "fastqc" do
     version "0.10.1+dfsg-2"

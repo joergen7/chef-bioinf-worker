@@ -6,7 +6,7 @@
 
 rlib = node.default.dir.rlib
 
-include_package "_r"
+include_recipe "chef-bioinf-worker::_r"
 
 package "r-cran-gplots"
 

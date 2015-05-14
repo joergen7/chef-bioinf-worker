@@ -1,9 +1,7 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _cummerbund
+# Recipe:: misc
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-include_recipe "chef-bioinf-worker::_r"
-
-package "r-bioc-cummerbund"
+include_recipe "chef-bioinf-worker::_shrimp"

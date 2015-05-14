@@ -8,7 +8,7 @@ archive  = node.default.dir.archive
 software = node.default.dir.software
 bin      = node.default.dir.bin
 
-include_package "_java"
+include_recipe "chef-bioinf-worker::_java"
 
 trimmomatic_link = "http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.32.zip"
 trimmomatic_zip  = "#{archive}/#{File.basename( trimmomatic_link )}"

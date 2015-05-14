@@ -7,7 +7,7 @@
 jar = node.default.dir.jar
 bin = node.default.dir.bin
 
-include_recipe "_java"
+include_recipe "chef-bioinf-worker::_java"
 
 varscan_link = "http://downloads.sourceforge.net/project/varscan/VarScan.v2.3.7.jar"
 varscan_jar  = "#{jar}/#{File.basename( varscan_link )}"
