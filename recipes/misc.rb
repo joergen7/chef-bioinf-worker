@@ -6,3 +6,4 @@
 
 include_recipe "chef-bioinf-worker::_shrimp"
 include_recipe "chef-bioinf-worker::_bismark"
+include_recipe "chef-bioinf-worker::_star"

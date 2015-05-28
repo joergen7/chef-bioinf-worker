@@ -4,6 +4,7 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
+include_recipe "chef-bioinf-worker::_bowtie"
 include_recipe "chef-bioinf-worker::_bowtie2"
 include_recipe "chef-bioinf-worker::_samtools"
 
@@ -27,4 +28,8 @@ end
 
 link "#{bin}/bismark" do
   to "#{bismark_dir}/bismark"
+end
+
+link "#{bin}/bismark_genome_preparation" do
+  to "#{bismark_dir}/bismark_genome_preparation"
 end
