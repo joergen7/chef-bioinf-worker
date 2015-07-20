@@ -19,7 +19,6 @@ remote_file annovar_tar do
 end
 
 bash "extract_annovar" do
-    action :nothing
     code "tar xf #{annovar_tar} -C #{software}"
     not_if Dir.exists?( annovar_dir )
 end
