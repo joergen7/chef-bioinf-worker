@@ -20,7 +20,7 @@ end
 
 bash "extract_annovar" do
     code "tar xf #{annovar_tar} -C #{software}"
-    not_if Dir.exists?( annovar_dir )
+    not_if "#{Dir.exists?( annovar_dir )}"
 end
 
 link "#{bin}/annotate_variation.pl" do
