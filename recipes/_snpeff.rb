@@ -30,3 +30,15 @@ java -jar #{snpeff_dir}/snpEff.jar $@
     SCRIPT
     mode "0755"
 end
+
+bash "download_snpEff_hg38_db" do
+  code "snpEff download hg38"
+  not_if "#{Dir.exists?( "#{snpeff_dir}/data/hg38" )}"
+end
+
+bash "download_snpEff_hg19_db" do
+  code "snpEff download hg19"
+  not_if "#{Dir.exists?( "#{snpeff_dir}/data/hg19" )}"
+end
+
+
