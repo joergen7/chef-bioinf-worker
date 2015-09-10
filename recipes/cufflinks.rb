@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _cufflinks
+# Recipe:: cufflinks
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
@@ -8,10 +8,12 @@ archive  = node.default.dir.archive
 software = node.default.dir.software
 bin      = node.default.dir.bin
 
-
 cufflinks_link = "http://cole-trapnell-lab.github.io/cufflinks/assets/downloads/cufflinks-2.2.1.Linux_x86_64.tar.gz"
 cufflinks_tar  = "#{archive}/#{File.basename( cufflinks_link )}"
 cufflinks_dir  = "#{software}/cufflinks-2.2.1.Linux_x86_64"
+
+directory node.default.dir.software
+directory node.default.dir.archive
 
 remote_file cufflinks_tar do
     action :create_if_missing

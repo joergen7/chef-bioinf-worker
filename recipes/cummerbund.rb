@@ -1,7 +1,9 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _bowtie2
+# Recipe:: cummerbund
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-package "bowtie2"
+include_recipe "chef-bioinf-worker::r_base"
+
+package "r-bioc-cummerbund"

@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _r
+# Recipe:: java
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-package "r-base"
+package "openjdk-7-jdk"

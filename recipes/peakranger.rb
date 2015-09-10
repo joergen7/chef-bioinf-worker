@@ -1,16 +1,20 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _peakranger
+# Recipe:: peakranger
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
-archive  = node.default.dir.archive
-software = node.default.dir.software
-bin      = node.default.dir.bin
-
 peakranger_link = "http://downloads.sourceforge.net/project/ranger/PeakRanger-1.14-Linux-x86_64.zip"
-peakranger_zip  = "#{archive}/#{File.basename( peakranger_link )}"
-peakranger_dir  = "#{software}/PeakRanger-1.14-Linux-x86_64"
+peakranger_zip  = "#{node.default.dir.archive}/#{File.basename( peakranger_link )}"
+peakranger_dir  = "#{node.default.dir.software}/PeakRanger-1.14-Linux-x86_64"
+
+
+
+
+directory node.default.dir.software
+directory node.default.dir.archive
+
+package "unzip"
 
 remote_file peakranger_zip do
     action :create_if_missing
@@ -22,6 +26,6 @@ bash "extract_peakranger" do
     not_if "#{Dir.exists?( peakranger_dir )}"
 end
 
-link "#{bin}/ranger" do
+link "#{node.default.dir.bin}/ranger" do
     to "#{peakranger_dir}/ranger"
 end

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _annovar
+# Recipe:: annovar
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
@@ -8,10 +8,16 @@ archive  = node.default.dir.archive
 software = node.default.dir.software
 bin      = node.default.dir.bin
 
-
 annovar_link = "http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz"
 annovar_tar  = "#{archive}/#{File.basename( annovar_link )}"
 annovar_dir  = "#{software}/annovar"
+
+
+
+
+directory node.default.dir.archive
+directory node.default.dir.software
+
 
 remote_file annovar_tar do
     source annovar_link

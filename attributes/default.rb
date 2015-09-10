@@ -6,3 +6,8 @@ default.dir.rlib     = "#{default.dir.software}/rlib"
 
 # directories existent by default
 default.dir.bin      = "/usr/local/bin"
+
+
+
+# squid
+default.dir.squid  = "#{default.dir.software}/squid-1.9g"

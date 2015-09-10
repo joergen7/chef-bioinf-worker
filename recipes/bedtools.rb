@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _bedtools
+# Recipe:: bedtools
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
@@ -12,6 +12,13 @@ bin      = node.default.dir.bin
 bedtools_link = "https://github.com/arq5x/bedtools2/releases/download/v2.22.1/bedtools-2.22.1.tar.gz"
 bedtools_tar  = "#{archive}/#{File.basename( bedtools_link )}"
 bedtools_dir  = "#{software}/bedtools2"
+
+
+
+directory node.default.dir.software
+directory node.default.dir.archive
+
+package "g++"
 
 remote_file bedtools_tar do
     action :create_if_missing

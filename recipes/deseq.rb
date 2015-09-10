@@ -1,21 +1,22 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _deseq
+# Recipe:: deseq
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
-rlib = node.default.dir.rlib
+include_recipe "chef-bioinf-worker::r_base"
 
-include_recipe "chef-bioinf-worker::_r"
+directory node.default.dir.software
+directory node.default.dir.rlib
 
 package "r-cran-gplots"
+package "r-cran-xml"
 
 script "install_deseq" do
     interpreter "Rscript"
     code <<-SCRIPT
-.libPaths( "#{rlib}" )
 source( "http://bioconductor.org/biocLite.R" )
 biocLite( "DESeq" )
     SCRIPT
-    not_if "#{Dir.exists?( "#{rlib}/DESeq" )}"
+    not_if "#{Dir.exists?( "#{node.default.dir.rlib}/DESeq" )}"
 end
