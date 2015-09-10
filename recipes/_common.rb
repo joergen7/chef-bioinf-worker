@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: common
+# Recipe:: _common
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 

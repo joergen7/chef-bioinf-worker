@@ -2,7 +2,7 @@
 # Cookbook Name:: chef-bioinf-worker
 # Recipe:: cutadapt
 #
-# Copyright (c) 2015 The Authors, All Rights Reserved.
+# Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 package "python-pip"
 package "python-dev"
