@@ -4,21 +4,17 @@
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
-archive  = node.default.dir.archive
-software = node.default.dir.software
-bin      = node.default.dir.bin
-
 
 bedtools_link = "https://github.com/arq5x/bedtools2/releases/download/v2.22.1/bedtools-2.22.1.tar.gz"
-bedtools_tar  = "#{archive}/#{File.basename( bedtools_link )}"
-bedtools_dir  = "#{software}/bedtools2"
+bedtools_tar  = "#{node.default.dir.archive}/#{File.basename( bedtools_link )}"
+bedtools_dir  = "#{node.default.dir.software}/bedtools2"
 
 
+
+package "g++"
 
 directory node.default.dir.software
 directory node.default.dir.archive
-
-package "g++"
 
 remote_file bedtools_tar do
     action :create_if_missing
@@ -26,7 +22,7 @@ remote_file bedtools_tar do
 end
 
 bash "extract_bedtools" do
-    code "tar xf #{bedtools_tar} -C #{software}"
+    code "tar xf #{bedtools_tar} -C #{node.default.dir.software}"
     not_if "#{Dir.exists?( bedtools_dir )}"
 end
 
@@ -36,10 +32,10 @@ bash "compile_bedtools" do
     not_if "#{File.exists?( "#{bedtools_dir}/bin/bedtools" )}"
 end
 
-link "#{bin}/sortBed" do
+link "#{node.default.dir.bin}/sortBed" do
   to "#{bedtools_dir}/bin/sortBed"
 end
 
-link "#{bin}/bedtools" do
+link "#{node.default.dir.bin}/bedtools" do
   to "#{bedtools_dir}/bin/bedtools"
 end

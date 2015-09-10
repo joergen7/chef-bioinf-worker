@@ -8,13 +8,3 @@
 bash "apt-get_update" do
     code "apt-get update"
 end
-
-# create directories
-# directory node.default.dir.software
-# directory node.default.dir.archive
-# directory node.default.dir.jar
-# directory node.default.dir.rlib
-
-# auxiliary packages
-# package "unzip"
-# package "g++"
