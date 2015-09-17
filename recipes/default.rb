@@ -7,6 +7,7 @@
 include_recipe "chef-bioinf-worker::annovar"
 include_recipe "chef-bioinf-worker::bedtools"
 include_recipe "chef-bioinf-worker::bismark"
+include_recipe "chef-bioinf-worker::blast"
 include_recipe "chef-bioinf-worker::bowtie"
 include_recipe "chef-bioinf-worker::bowtie2"
 include_recipe "chef-bioinf-worker::bsmooth"
