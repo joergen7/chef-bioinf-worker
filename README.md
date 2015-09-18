@@ -21,7 +21,8 @@ Clone this repository by entering
 
 ### Installing locally
 
-You can install the bioinformics tools locally by entering
+If you run an Ubuntu machine, you can install the bioinformics tools locally by
+entering
     
     sudo chef-client -z -r "chef-bioinf-worker::default"
     
