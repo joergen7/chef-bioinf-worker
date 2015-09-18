@@ -21,19 +21,20 @@ Clone this repository by entering
 
 ### Installing locally
 
-Make sure, vagrant and virtualbox are installed. In Ubuntu you can install both
-by entering
-
-    sudo apt-get install vagrant virtualbox
-
 You can install the bioinformics tools locally by entering
     
     sudo chef-client -z -r "chef-bioinf-worker::default"
     
 ### Creating a VM with bioinformatics tools
 
-Alternatively, you can create a VM with bioinformatics tools by changing to the
-chef-bioinf-worker directory and letting kitchen create a test instance
+Alternatively, you can create a VM with bioinformatics tools by letting kitchen
+create a test instance. Make sure, vagrant and virtualbox are installed. In
+Ubuntu you can install both by entering
+
+    sudo apt-get install vagrant virtualbox
+
+Now enter the directory of the chef-bioinf-worker cookbook and let kitchen
+create the test instance.
 
     cd cookbooks/chef-bioinf-worker
     kitchen converge
