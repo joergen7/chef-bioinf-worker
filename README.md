@@ -28,7 +28,6 @@ by entering
 
 You can install the bioinformics tools locally by entering
     
-    sudo apt-get update
     sudo chef-client -z -r "chef-bioinf-worker::default"
     
 ### Creating a VM with bioinformatics tools
