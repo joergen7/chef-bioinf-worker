@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+  customize:
+    memory: 2048
 
 provisioner:
   name: chef_zero
@@ -12,5 +14,5 @@ suites:
   - name: default
     run_list:
       - recipe[chef-bioinf-worker::_common]
-      - recipe[chef-bioinf-worker::default]
+      - recipe[chef-bioinf-worker::openms]
     attributes:
