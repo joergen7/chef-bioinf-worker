@@ -53,18 +53,13 @@ bash "extract_openms" do
 end
 
 # build zlib
-#
-# Just building ALL will make the target ZLIB fail. Therefore, we build it
-# prior to the other dependencies. In the build run towards ALL, ZLIB will just
-# be skipped.
-#
-bash "build_openms_zlib" do
+bash "build_openms_contrib_zlib" do
   code "sudo cmake -DBUILD_TYPE=ZLIB ."
   cwd contrib_dir
 end
 
 # build contrib
-bash "build_openms_contrib" do
+bash "build_openms_contrib_all" do
   code "sudo cmake -DBUILD_TYPE=ALL ."
   cwd contrib_dir
 end
