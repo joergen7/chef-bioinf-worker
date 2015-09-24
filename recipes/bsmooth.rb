@@ -19,6 +19,7 @@ git "git_clone_bmooth" do
   action :checkout
   repository bsmooth_githuburl
   destination bsmooth_dir
+  retries 1
 end
 
 bash "bsmooth_set_permission" do

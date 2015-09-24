@@ -7,29 +7,29 @@
 include_recipe "chef-bioinf-worker::squid"
 
 randfold_link = "http://bioinformatics.psb.ugent.be/supplementary_data/erbon/nov2003/downloads/randfold-2.0.tar.gz"
-randfold_tar  = "#{node.default.dir.archive}/#{File.basename( randfold_link )}"
-randfold_dir  = "#{node.default.dir.software}/randfold-2.0"
-
+randfold_tar  = "#{node.dir.archive}/#{File.basename( randfold_link )}"
+randfold_dir  = "#{node.dir.software}/randfold-2.0"
 
 
 
 remote_file randfold_tar do
     action :create_if_missing
     source randfold_link
+    retries 1
 end
 
 bash "extract_randfold" do
-    code "tar xf #{randfold_tar} -C #{node.default.dir.software}"
+    code "tar xf #{randfold_tar} -C #{node.dir.software}"
     not_if "#{Dir.exists?( randfold_dir )}"
 end
 
 bash "compile_randfold" do
-    code "make INCLUDE=\"-I. -I#{node.default.dir.squid} -L#{node.default.dir.squid}/\""
+    code "make INCLUDE=\"-I. -I#{node.dir.squid} -L#{node.dir.squid}/\""
     cwd randfold_dir
     not_if "#{File.exists?( "#{randfold_dir}/randfold" )}"
 end
 
-link "#{node.default.dir.bin}/randfold" do
+link "#{node.dir.bin}/randfold" do
   to "#{randfold_dir}/randfold"
 end
 

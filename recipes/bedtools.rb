@@ -19,6 +19,7 @@ directory node.dir.archive
 remote_file bedtools_tar do
   action :create_if_missing
   source bedtools_link
+  retries 1
 end
 
 bash "extract_bedtools" do

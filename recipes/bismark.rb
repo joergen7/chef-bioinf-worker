@@ -33,6 +33,7 @@ git "git_clone_bismark" do
   action :checkout
   repository bismark_githuburl
   destination bismark_dir
+  retries 1
 end
 
 

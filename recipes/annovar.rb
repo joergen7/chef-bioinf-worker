@@ -4,35 +4,33 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-archive  = node.default.dir.archive
-software = node.default.dir.software
-bin      = node.default.dir.bin
 
 annovar_link = "http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz"
-annovar_tar  = "#{archive}/#{File.basename( annovar_link )}"
-annovar_dir  = "#{software}/annovar"
+annovar_tar  = "#{node.dir.archive}/#{File.basename( annovar_link )}"
+annovar_dir  = "#{node.dir.software}/annovar"
 
 
 
 
-directory node.default.dir.archive
-directory node.default.dir.software
+directory node.dir.archive
+directory node.dir.software
 
 
 remote_file annovar_tar do
-    source annovar_link
-    action :create_if_missing
+  source annovar_link
+  action :create_if_missing
+  retries 1
 end
 
 bash "extract_annovar" do
-    code "tar xf #{annovar_tar} -C #{software}"
-    not_if "#{Dir.exists?( annovar_dir )}"
+  code "tar xf #{annovar_tar} -C #{node.dir.software}"
+  not_if "#{Dir.exists?( annovar_dir )}"
 end
 
-link "#{bin}/annotate_variation.pl" do
+link "#{node.dir.bin}/annotate_variation.pl" do
   to "#{annovar_dir}/annotate_variation.pl"
 end
 
-link "#{bin}/convert2annovar.pl" do
+link "#{node.dir.bin}/convert2annovar.pl" do
   to "#{annovar_dir}/convert2annovar.pl"
 end

@@ -43,6 +43,7 @@ git "git_clone_openms_src" do
   repository "https://github.com/OpenMS/OpenMS.git"
   revision "4776889fe40e1b001407b50b9a3de2fd1c175515"
   destination openms_src_dir
+  retries 1
 end
 
 
@@ -52,6 +53,7 @@ git "git_clone_openms_contrib" do
   repository "https://github.com/OpenMS/contrib.git"
   revision "f6b44d770b6c1b23972a8891753472e60a356253"
   destination contrib_src_dir
+  retries 1
 end
 
 
