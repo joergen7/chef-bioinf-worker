@@ -15,7 +15,9 @@ package "cmake"
 package "g++"
 package "autoconf"
 package "zlib1g-dev"
-package "qt4-dev-tools"
+package "qt4-dev-tools" do
+  retries 1
+end
 package "patch"
 package "libtool"
 package "git"
@@ -81,6 +83,7 @@ bash "build_openms" do
   code "make"
   cwd openms_build_dir
   not_if "#{File.exists?( "#{openms_build_dir}/lib/libOpenMS.so" )}"
+  retries 1
 end
 
 bash "update_environment" do
