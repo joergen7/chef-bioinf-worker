@@ -36,3 +36,4 @@ end
 link "#{node.dir.bin}/bowtie-build" do
   to "#{bowtie_dir}/bowtie-build"
 end
+
