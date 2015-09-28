@@ -23,10 +23,10 @@ remote_file peakranger_zip do
 end
 
 bash "extract_peakranger" do
-    code "unzip -o #{peakranger_zip} -d #{peakranger_dir}"
-    not_if "#{Dir.exists?( peakranger_dir )}"
+  code "unzip -o #{peakranger_zip} -d #{peakranger_dir}"
+  not_if "#{Dir.exists?( peakranger_dir )}"
 end
 
 link "#{node.dir.bin}/ranger" do
-    to "#{peakranger_dir}/ranger"
+  to "#{peakranger_dir}/ranger"
 end

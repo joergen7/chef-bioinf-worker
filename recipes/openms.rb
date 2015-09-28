@@ -62,6 +62,7 @@ bash "build_openms_contrib_seqan" do
   code "cmake -DBUILD_TYPE=SEQAN #{contrib_src_dir}"
   cwd contrib_build_dir
   not_if "#{Dir.exists?( "#{contrib_build_dir}/src/seqan-1.4.1" )}"
+  retries 1
 end
 
 # build wildmagic
@@ -69,6 +70,7 @@ bash "build_openms_contrib_wildmagic" do
   code "cmake -DBUILD_TYPE=WILDMAGIC #{contrib_src_dir}"
   cwd contrib_build_dir
   not_if "#{Dir.exists?( "#{contrib_build_dir}/src/WildMagic5" )}"
+  retries 1
 end
 
 # configure openms

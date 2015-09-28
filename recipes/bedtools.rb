@@ -5,7 +5,7 @@
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
 
-bedtools_link = "https://github.com/arq5x/bedtools2/releases/download/v2.22.1/bedtools-2.22.1.tar.gz"
+bedtools_link = "https://github.com/arq5x/bedtools2/releases/download/v2.25.0/bedtools-2.25.0.tar.gz"
 bedtools_tar  = "#{node.dir.archive}/#{File.basename( bedtools_link )}"
 bedtools_dir  = "#{node.dir.software}/bedtools2"
 
