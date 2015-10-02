@@ -5,6 +5,7 @@
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 include_recipe "chef-bioinf-worker::numpy"
+include_recipe "chef-bioinf-worker::haskell"
 
 package "libfreetype6-dev"
 package "libxft-dev"
@@ -18,3 +19,5 @@ bash "install_qiime" do
   not_if "#{File.exists?( "/usr/local/bin/print_qiime_config.py" )}"
   retries 1
 end
+
+
