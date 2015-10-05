@@ -15,8 +15,6 @@ directory node.dir.software
 package "unzip"
 package "g++"
 package "libexpat1-dev"
-package "libstdc++5"
-package "libstdc++5:i386"
 
 remote_file tandem_zip do
   action :create_if_missing
