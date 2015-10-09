@@ -45,7 +45,7 @@ link "#{node.dir.bin}/bismark_genome_preparation" do
   to "#{bismark_dir}/bismark_genome_preparation"
 end
 
-link "#{node.dir.bin}bismark_methylation_extractor" do
+link "#{node.dir.bin}/bismark_methylation_extractor" do
   to "#{bismark_dir}/bismark_methylation_extractor"
 end
 
