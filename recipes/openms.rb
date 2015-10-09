@@ -44,6 +44,7 @@ git "git_clone_openms_src" do
   revision "4776889fe40e1b001407b50b9a3de2fd1c175515"
   destination openms_src_dir
   retries 1
+  timeout 3600
 end
 
 
