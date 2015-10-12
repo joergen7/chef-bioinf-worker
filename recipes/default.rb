@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-include_recipe "chef-bioinf-worker::annovar"
+include_recipe "chef-bioinf-worker::annodb_hg38"
 include_recipe "chef-bioinf-worker::bedtools"
 include_recipe "chef-bioinf-worker::bfast"
 include_recipe "chef-bioinf-worker::bismark"
@@ -23,6 +23,7 @@ include_recipe "chef-bioinf-worker::fastqc"
 include_recipe "chef-bioinf-worker::hg19"
 include_recipe "chef-bioinf-worker::hg38"
 include_recipe "chef-bioinf-worker::hmmer"
+include_recipe "chef-bioinf-worker::msgf"
 include_recipe "chef-bioinf-worker::muscle"
 include_recipe "chef-bioinf-worker::numpy"
 include_recipe "chef-bioinf-worker::omssa"
