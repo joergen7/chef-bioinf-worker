@@ -5,7 +5,7 @@
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 annodb_hg38_dir = "/opt/data/annodb_hg38"
-annodb_hg38_idlist = ["refGene.txt", "refGeneMrna.fa", "refGeneVersion.txt", "refGeneMrna.fa"]
+annodb_hg38_idlist = ["refGene.txt", "refGeneMrna.fa", "refGeneVersion.txt"]
 
 directory node.dir.data
 directory annodb_hg38_dir
@@ -24,7 +24,7 @@ annodb_hg38_idlist.each { |id|
     not_if "#{File.exists?( file_gz ) || File.exists?( file )}"
   end
   
-  bash "extract_#{file}" do
+  bash "extract_#{file_gz}" do
     code "gunzip #{file_gz}"
     cwd annodb_hg38_dir
     not_if "#{File.exists?( file )}"
