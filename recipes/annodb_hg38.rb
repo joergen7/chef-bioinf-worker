@@ -8,6 +8,7 @@ annodb_hg38_dir = "/opt/data/annodb_hg38"
 annodb_hg38_idlist = ["refGene.txt", "refGeneMrna.fa", "refGeneVersion.txt", "refGeneMrna.fa"]
 
 directory node.dir.data
+directory annodb_hg38_dir
 
 annodb_hg38_idlist.each { |id|
 
