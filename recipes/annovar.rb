@@ -34,3 +34,4 @@ end
 link "#{node.dir.bin}/convert2annovar.pl" do
   to "#{annovar_dir}/convert2annovar.pl"
 end
+
