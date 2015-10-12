@@ -12,7 +12,10 @@ include_recipe "chef-bioinf-worker::annovar"
 directory node.dir.data
 
 bash "download_annodb_hg38" do
-  code "annotate_variation.pl -downdb -webfrom annovar hg38 #{annodb_hg38_dir}"
+  code <<-SCRIPT
+rm -rf #{annodb_hg38_dir}
+annotate_variation.pl -downdb -webfrom annovar refGene --buildver hg38 #{annodb_hg38_dir}
+  SCRIPT
   not_if "#{Dir.exists?( annodb_hg38_dir )}"
   retries 1
 end
