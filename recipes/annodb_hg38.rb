@@ -5,17 +5,27 @@
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 annodb_hg38_dir = "/opt/data/annodb_hg38"
-
-
-include_recipe "chef-bioinf-worker::annovar"
+annodb_hg38_idlist = ["refGene.txt", "refGeneMrna.fa", "refGeneVersion.txt", "refGeneMrna.fa"]
 
 directory node.dir.data
 
-bash "download_annodb_hg38" do
-  code <<-SCRIPT
-rm -rf #{annodb_hg38_dir}
-annotate_variation.pl -downdb -webfrom annovar refGene --buildver hg38 #{annodb_hg38_dir}
-  SCRIPT
-  not_if "#{Dir.exists?( annodb_hg38_dir )}"
-  retries 1
-end
+annodb_hg38_idlist.each { |id|
+
+  url = "http://www.openbioinformatics.org/annovar/download/hg38_#{id}"
+  file = "#{annodb_hg38_dir}/#{File.basename( url )}"
+  file_gz = "#{file}.gz"
+  url = "#{url}.gz"
+  
+  remote_file file_gz do
+    action :create_if_missing
+    source url
+    retries 1
+    not_if "#{File.exists?( file_gz ) || File.exists?( file )}"
+  end
+  
+  bash "extract_#{file}" do
+    code "gunzip #{file_gz}"
+    cwd annodb_hg38_dir
+    not_if "#{File.exists?( file )}"
+  end
+}
