@@ -35,3 +35,11 @@ java -jar #{msgf_jar} $@
   SCRIPT
   mode "0755"
 end
+
+file "#{node.dir.bin}/buildsa" do
+  content <<-SCRIPT
+#!/usr/bin/env bash
+java -Xmx3500M -cp #{msgf_jar} edu.ucsd.msjava.msdbsearch.BuildSA $@
+  SCRIPT
+  mode "0755"
+end
