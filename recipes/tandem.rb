@@ -23,22 +23,28 @@ remote_file tandem_zip do
 end
 
 bash "extract_tandem" do
-  code "unzip -o #{tandem_zip} -d #{node.dir.software}"
+  code <<-SCRIPT
+unzip -o #{tandem_zip} -d #{node.dir.software}
+rm #{tandem_dir}/bin/fasta_pro.exe
+rm #{tandem_dir}/bin/tandem.exe
+  SCRIPT
   not_if "#{Dir.exists?( tandem_dir )}"
 end
 
-bash "build_tandem" do
+bash "build_tandem.exe" do
   code "make"
   cwd "#{tandem_dir}/src"
-  not_if "#{File.exists?( "#{tandem_dir}/src/tandem.o" )}"
+  not_if "#{File.exists?( "#{tandem_dir}/bin/tandem.exe" )}"
+end
+
+bash "build_fasta_pro.exe" do
+  code "make EXECUTABLE=../bin/fasta_pro.exe"
+  cwd "#{tandem_dir}/src"
+  not_if "#{File.exists?( "#{tandem_dir}/bin/fasta_pro.exe" )}"
 end
 
 link "#{node.dir.bin}/tandem.exe" do
   to "#{tandem_dir}/bin/tandem.exe"
-end
-
-bash "set_user_rights_on_fasta_pro.exe" do
-  code "chmod a+x #{tandem_dir}/bin/fasta_pro.exe"
 end
 
 link "#{node.dir.bin}/fasta_pro.exe" do
