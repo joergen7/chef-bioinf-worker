@@ -31,7 +31,7 @@ end
 file "#{node.dir.bin}/msgf" do
   content <<-SCRIPT
 #!/usr/bin/env bash
-java -jar #{msgf_jar} $@
+java -Xmx3500M -jar #{msgf_jar} $@
   SCRIPT
   mode "0755"
 end
