@@ -14,7 +14,6 @@ contrib_build_dir = "#{node.dir.software}/OpenMS/contrib-build"
 package "cmake"
 package "autoconf"
 package "g++"
-package "zlib1g-dev"
 package "qt4-dev-tools" do
   retries 1
 end
