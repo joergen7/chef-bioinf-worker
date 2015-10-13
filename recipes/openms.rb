@@ -94,3 +94,8 @@ bash "update_environment" do
   code "echo export LD_LIBRARY_PATH=#{openms_build_dir}/lib >> /etc/environment"
   not_if "grep LD_LIBRARY_PATH /etc/environment"
 end
+
+bash "update_path" do
+  code "echo export PATH=$PATH:#{openms_build_dir}/bin >> /etc/environment"
+  not_if "grep '#{openms_build_dir}/bin' /etc/environment"
+end
