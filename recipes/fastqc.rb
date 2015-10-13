@@ -1,9 +1,38 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _fastqc
+# Recipe:: fastqc
 #
-# Copyright (c) 2015 The Authors, All Rights Reserved.
+# Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
+
+fastqc_link = "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.4.zip"
+fastqc_zip = "#{node.dir.archive}/#{File.basename( fastqc_link )}"
+fastqc_dir = "#{node.dir.software}/FastQC"
+
+
+
 
 include_recipe "chef-bioinf-worker::java"
 
-package "fastqc"
+directory node.dir.software
+directory node.dir.archive
+
+package "unzip"
+
+remote_file fastqc_zip do
+  action :create_if_missing
+  source fastqc_link
+  retries 1
+end
+
+bash "extract_fastqc" do
+  code "unzip -o #{fastqc_zip} -d #{node.dir.software}"
+  not_if "#{Dir.exists?( fastqc_dir )}"
+end
+
+bash "fastqc_set_permission" do
+  code "chmod a+x #{fastqc_dir}/fastqc"
+end
+
+link "#{node.dir.bin}/fastqc" do
+  to "#{fastqc_dir}/fastqc"
+end

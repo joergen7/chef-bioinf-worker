@@ -1,10 +1,10 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: _varscan
+# Recipe:: varscan
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-varscan_link = "http://downloads.sourceforge.net/project/varscan/VarScan.v2.3.7.jar"
+varscan_link = "http://downloads.sourceforge.net/project/varscan/VarScan.v2.3.9.jar"
 varscan_jar  = "#{node.dir.jar}/#{File.basename( varscan_link )}"
 
 
