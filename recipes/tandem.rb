@@ -36,3 +36,11 @@ end
 link "#{node.dir.bin}/tandem.exe" do
   to "#{tandem_dir}/bin/tandem.exe"
 end
+
+bash "set_user_rights_on_fasta_pro.exe" do
+  code "chmod a+x #{tandem_dir}/bin/fasta_pro.exe"
+end
+
+link "#{node.dir.bin}/fasta_pro.exe" do
+  to "#{tandem_dir}/bin/fasta_pro.exe"
+end
