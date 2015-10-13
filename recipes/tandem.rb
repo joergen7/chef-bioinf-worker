@@ -34,13 +34,13 @@ end
 bash "build_tandem.exe" do
   code "make"
   cwd "#{tandem_dir}/src"
-  not_if "#{File.exists?( "#{tandem_dir}/bin/tandem.exe" )}"
+  not_if "#{File.executable?( "#{tandem_dir}/bin/tandem.exe" )}"
 end
 
 bash "build_fasta_pro.exe" do
   code "make EXECUTABLE=../bin/fasta_pro.exe"
   cwd "#{tandem_dir}/src"
-  not_if "#{File.exists?( "#{tandem_dir}/bin/fasta_pro.exe" )}"
+  not_if "#{File.executable?( "#{tandem_dir}/bin/fasta_pro.exe" )}"
 end
 
 link "#{node.dir.bin}/tandem.exe" do
