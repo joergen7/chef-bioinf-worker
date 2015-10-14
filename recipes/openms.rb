@@ -96,6 +96,6 @@ bash "update_environment" do
 end
 
 bash "update_path" do
-  code "echo export PATH=$PATH:#{openms_build_dir}/bin >> /etc/environment"
+  code "echo export PATH=\$PATH:#{openms_build_dir}/bin >> /etc/environment"
   not_if "grep '#{openms_build_dir}/bin' /etc/environment"
 end

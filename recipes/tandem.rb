@@ -15,6 +15,8 @@ directory node.dir.software
 package "unzip"
 package "g++"
 package "libexpat1-dev"
+package "libstdc++5"
+package "libstdc++5:i386"
 
 remote_file tandem_zip do
   action :create_if_missing
@@ -23,24 +25,18 @@ remote_file tandem_zip do
 end
 
 bash "extract_tandem" do
-  code <<-SCRIPT
-unzip -o #{tandem_zip} -d #{node.dir.software}
-rm #{tandem_dir}/bin/fasta_pro.exe
-rm #{tandem_dir}/bin/tandem.exe
-  SCRIPT
+  code "unzip -o #{tandem_zip} -d #{node.dir.software}"
   not_if "#{Dir.exists?( tandem_dir )}"
 end
 
-bash "build_tandem.exe" do
-  code "make"
-  cwd "#{tandem_dir}/src"
-  not_if "#{File.executable?( "#{tandem_dir}/bin/tandem.exe" )}"
+
+
+bash "set_user_privileges_tandem.exe" do
+  code "chmod a+x #{tandem_dir}/bin/tandem.exe"
 end
 
-bash "build_fasta_pro.exe" do
-  code "make EXECUTABLE=../bin/fasta_pro.exe"
-  cwd "#{tandem_dir}/src"
-  not_if "#{File.executable?( "#{tandem_dir}/bin/fasta_pro.exe" )}"
+bash "set_user_privileges_fasta_pro.exe" do
+  code "chmod a+x #{tandem_dir}/bin/fasta_pro.exe"
 end
 
 link "#{node.dir.bin}/tandem.exe" do
