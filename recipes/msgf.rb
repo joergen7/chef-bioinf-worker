@@ -44,6 +44,7 @@ java -Xmx3500M -cp #{msgf_jar} edu.ucsd.msjava.msdbsearch.BuildSA $@
   mode "0755"
 end
 
-link "#{node.dir.etc}/MSGFPlus.jar" do
-  to msgf_jar
+bash "update_path" do
+  code "echo export PATH=\$PATH:#{msgf_dir} >> /etc/environment"
+  not_if "grep '#{msgf_dir}' /etc/environment"
 end
