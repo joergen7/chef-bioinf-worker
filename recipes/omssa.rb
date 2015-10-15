@@ -35,4 +35,10 @@ link "#{node.dir.bin}/omssamerge" do
   to "#{omssa_dir}/omssamerge"
 end
 
+link "#{node.dir.etc}/mods.xml" do
+  to "#{omssa_dir}/mods.xml"
+end
 
+link "#{node.dir.etc}/usermods.xml" do
+  to "#{omssa_dir}/usermods.xml"
+end

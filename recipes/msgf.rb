@@ -43,3 +43,7 @@ java -Xmx3500M -cp #{msgf_jar} edu.ucsd.msjava.msdbsearch.BuildSA $@
   SCRIPT
   mode "0755"
 end
+
+link "#{node.dir.etc}/MSGFPlus.jar" do
+  to msgf_jar
+end
