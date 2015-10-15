@@ -25,7 +25,7 @@ end
 
 bash "extract_msgf" do
   code "unzip -o #{msgf_zip} -d #{msgf_dir}"
-  not_if "#{Dir.exists?( msgf_dir )}"
+  not_if "#{File.exists?( msgf_jar )}"
 end
 
 file "#{node.dir.bin}/msgf" do
