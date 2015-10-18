@@ -91,11 +91,11 @@ bash "build_openms" do
 end
 
 bash "update_environment" do
-  code "echo LD_LIBRARY_PATH=#{openms_build_dir}/lib >> /etc/environment"
-  not_if "grep LD_LIBRARY_PATH /etc/environment"
+  code "echo export LD_LIBRARY_PATH=#{openms_build_dir}/lib >> /etc/profile"
+  not_if "grep LD_LIBRARY_PATH /etc/profile"
 end
 
 bash "update_path" do
-  code "echo PATH=\\$PATH:#{openms_build_dir}/bin >> /etc/environment"
-  not_if "grep '#{openms_build_dir}/bin' /etc/environment"
+  code "echo export PATH=\\$PATH:#{openms_build_dir}/bin >> /etc/profile"
+  not_if "grep '#{openms_build_dir}/bin' /etc/profile"
 end
