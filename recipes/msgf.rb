@@ -45,6 +45,6 @@ java -Xmx3500M -cp #{msgf_jar} edu.ucsd.msjava.msdbsearch.BuildSA $@
 end
 
 bash "update_path" do
-  code "echo export PATH=\\$PATH:#{msgf_dir} >> /etc/environment"
+  code "echo PATH=\\$PATH:#{msgf_dir} >> /etc/environment"
   not_if "grep '#{msgf_dir}' /etc/environment"
 end
