@@ -6,6 +6,7 @@
 
 include_recipe "chef-bioinf-worker::annodb_hg38"
 include_recipe "chef-bioinf-worker::annovar"
+include_recipe "chef-bioinf-worker::bdgp6"
 include_recipe "chef-bioinf-worker::bedtools"
 include_recipe "chef-bioinf-worker::bfast"
 include_recipe "chef-bioinf-worker::bismark"
