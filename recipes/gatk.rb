@@ -20,7 +20,8 @@ git "git_clone_openms_src" do
   repository gatk_github_link
   revision gatk_vsn
   destination gatk_dir
-  retries 1
+  retries 4
+  timeout 1200
 end
 
 
