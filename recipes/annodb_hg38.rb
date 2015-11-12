@@ -1,10 +1,11 @@
+# coding: utf-8
 #
 # Cookbook Name:: chef-bioinf-worker
 # Recipe:: annodb_hg38
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-annodb_hg38_dir = "/opt/data/annodb_hg38"
+annodb_hg38_dir = "#{node.dir.data}/annodb_hg38"
 annodb_hg38_idlist = ["refGene.txt", "refGeneMrna.fa", "refGeneVersion.txt"]
 
 directory node.dir.data
