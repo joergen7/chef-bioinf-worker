@@ -16,4 +16,66 @@ default.dir.squid  = "#{default.dir.software}/squid-1.9g"
 
 
 
+# HG19
+default.hg19.dirname = "hg19"
+default.hg19.idlarge = [
+"chr1",
+"chr2",
+"chr3",
+"chr4",
+"chr5",
+"chr6",
+"chr7",
+"chr8",
+"chr9",
+"chr10",
+"chr11",
+"chr12",
+"chr13",
+"chr14",
+"chr15",
+"chr16",
+"chr17",
+"chr18",
+"chr19",
+"chr20",
+"chr21",
+"chr22",
+"chrX",
+"chrY"
+]
+default.hg19.smallname = "small.fa"
+default.hg19.fullname = "hg19.tar"
+default.dir.hg19 = "#{default.dir.data}/#{default.hg19.dirname}"
 
+# HG38
+default.hg38.dirname = "hg38"
+default.hg38.idlarge = [
+"chr1",
+"chr2",
+"chr3",
+"chr4",
+"chr5",
+"chr6",
+"chr7",
+"chr8",
+"chr9",
+"chr10",
+"chr11",
+"chr12",
+"chr13",
+"chr14",
+"chr15",
+"chr16",
+"chr17",
+"chr18",
+"chr19",
+"chr20",
+"chr21",
+"chr22",
+"chrX",
+"chrY"
+]
+default.hg38.smallname = "small.fa"
+default.hg38.fullname = "hg38.tar"
+default.dir.hg38 = "#{default.dir.data}/#{default.hg38.dirname}"

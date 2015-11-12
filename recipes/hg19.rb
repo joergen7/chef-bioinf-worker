@@ -1,37 +1,11 @@
+# coding: utf-8
 #
 # Cookbook Name:: chef-bioinf-worker
 # Recipe:: hg19
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-hg19_dir = "#{node.dir.data}/hg19"
 
-hg19_large = [
-"chr1",
-"chr2",
-"chr3",
-"chr4",
-"chr5",
-"chr6",
-"chr7",
-"chr8",
-"chr9",
-"chr10",
-"chr11",
-"chr12",
-"chr13",
-"chr14",
-"chr15",
-"chr16",
-"chr17",
-"chr18",
-"chr19",
-"chr20",
-"chr21",
-"chr22",
-"chrX",
-"chrY"
-]
 
 hg19_small = [
 "chr1_gl000191_random",
@@ -106,13 +80,13 @@ hg19_small = [
 ]
 
 directory node.dir.data
-directory hg19_dir
+directory node.dir.hg19
 
-hg19_large.each { |id|
+node.hg19.idlarge.each { |id|
 	
   url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/#{id}.fa.gz"
   
-  remote_file "#{hg19_dir}/#{File.basename( url )}" do
+  remote_file "#{node.dir.hg19}/#{File.basename( url )}" do
     action :create_if_missing
     source url
     retries 1
@@ -120,8 +94,8 @@ hg19_large.each { |id|
   
   bash "gunzip #{id}" do
     code "gunzip -k #{id}.fa.gz"
-    cwd hg19_dir
-    not_if "#{File.exists?( "#{hg19_dir}/#{id}.fa" ) || File.exists?( "#{hg19_dir}/hg19.tar" )}"
+    cwd node.dir.hg19
+    not_if "#{File.exists?( "#{node.dir.hg19}/#{id}.fa" ) || File.exists?( "#{node.dir.hg19}/#{node.hg19.fullname}" )}"
   end
 }
 
@@ -129,7 +103,7 @@ hg19_small.each { |id|
 	
   url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/#{id}.fa.gz"
   
-  remote_file "#{hg19_dir}/#{File.basename( url )}" do
+  remote_file "#{node.dir.hg19}/#{File.basename( url )}" do
     action :create_if_missing
     source url
     retries 1
@@ -137,14 +111,14 @@ hg19_small.each { |id|
 }
 
 bash "hg19_concatenate_small_fa" do
-  code "cat #{hg19_small.map { |id| "#{id}.fa.gz" }.join( " " )} | gunzip -c > small.fa"
-  cwd hg19_dir
-  not_if "#{File.exists?( "#{hg19_dir}/small.fa" ) || File.exists?( "#{hg19_dir}/hg19.tar" )}"
+  code "cat #{hg19_small.map { |id| "#{id}.fa.gz" }.join( " " )} | gunzip -c > #{node.hg19.smallname}"
+  cwd node.dir.hg19
+  not_if "#{File.exists?( "#{node.dir.hg19}/#{node.hg19.smallname}" ) || File.exists?( "#{node.dir.hg19}/#{node.hg19.fullname}" )}"
 end
 
 bash "hg19_tar_fa" do
-  code "tar --remove-files -cf hg19.tar #{hg19_large.map { |id| "#{id}.fa" }.join( " " )} small.fa"
-  cwd hg19_dir
-  not_if "#{File.exists?( "#{hg19_dir}/hg19.tar" )}"
+  code "tar --remove-files -cf #{node.hg19.fullname} #{node.hg19.idlarge.map { |id| "#{id}.fa" }.join( " " )} #{node.hg19.smallname}"
+  cwd node.dir.hg19
+  not_if "#{File.exists?( "#{node.dir.hg19}/#{node.hg19.fullname}" )}"
 end
   

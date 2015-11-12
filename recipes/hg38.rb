@@ -1,37 +1,10 @@
+# coding: utf-8
 #
 # Cookbook Name:: chef-bioinf-worker
 # Recipe:: hg38
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-hg38_dir = "#{node.dir.data}/hg38"
-
-hg38_large = [
-"chr1",
-"chr2",
-"chr3",
-"chr4",
-"chr5",
-"chr6",
-"chr7",
-"chr8",
-"chr9",
-"chr10",
-"chr11",
-"chr12",
-"chr13",
-"chr14",
-"chr15",
-"chr16",
-"chr17",
-"chr18",
-"chr19",
-"chr20",
-"chr21",
-"chr22",
-"chrX",
-"chrY"
-]
 
 hg38_small = [
 "chr1_GL383518v1_alt",
@@ -468,13 +441,13 @@ hg38_small = [
 ]
 
 directory node.dir.data
-directory hg38_dir
+directory node.dir.hg38
 
-hg38_large.each { |id|
+node.hg38.idlarge.each { |id|
 	
   url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/#{id}.fa.gz"
   
-  remote_file "#{hg38_dir}/#{File.basename( url )}" do
+  remote_file "#{node.dir.hg38}/#{File.basename( url )}" do
     action :create_if_missing
     source url
     retries 1
@@ -482,8 +455,8 @@ hg38_large.each { |id|
   
   bash "gunzip #{id}" do
     code "gunzip -k #{id}.fa.gz"
-    cwd hg38_dir
-    not_if "#{File.exists?( "#{hg38_dir}/#{id}.fa" ) || File.exists?( "#{hg38_dir}/hg38.tar" )}"
+    cwd node.dir.hg38
+    not_if "#{File.exists?( "#{node.dir.hg38}/#{id}.fa" ) || File.exists?( "#{node.dir.hg38}/#{node.hg38.fullname}" )}"
   end
 }
 
@@ -491,7 +464,7 @@ hg38_small.each { |id|
 	
   url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/#{id}.fa.gz"
   
-  remote_file "#{hg38_dir}/#{File.basename( url )}" do
+  remote_file "#{node.dir.hg38}/#{File.basename( url )}" do
     action :create_if_missing
     source url
     retries 1
@@ -499,14 +472,14 @@ hg38_small.each { |id|
 }
 
 bash "hg38_concatenate_small_fa" do
-  code "cat #{hg38_small.map { |id| "#{id}.fa.gz" }.join( " " )} | gunzip -c > small.fa"
-  cwd hg38_dir
-  not_if "#{File.exists?( "#{hg38_dir}/small.fa" ) || File.exists?( "#{hg38_dir}/hg38.tar" )}"
+  code "cat #{hg38_small.map { |id| "#{id}.fa.gz" }.join( " " )} | gunzip -c > #{node.hg38.smallname}"
+  cwd node.dir.hg38
+  not_if "#{File.exists?( "#{node.dir.hg38}/#{node.hg38.smallname}" ) || File.exists?( "#{node.dir.hg38}/#{node.hg38.fullname}" )}"
 end
 
 bash "hg38_tar_fa" do
-  code "tar --remove-files -cf hg38.tar #{hg38_large.map { |id| "#{id}.fa" }.join( " " )} small.fa"
-  cwd hg38_dir
-  not_if "#{File.exists?( "#{hg38_dir}/hg38.tar" )}"
+  code "tar --remove-files -cf #{node.hg38.fullname} #{node.hg38.idlarge.map { |id| "#{id}.fa" }.join( " " )} #{node.hg38.smallname}"
+  cwd node.dir.hg38
+  not_if "#{File.exists?( "#{node.dir.hg38}/#{node.hg38.fullname}" )}"
 end
   
