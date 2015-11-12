@@ -46,7 +46,6 @@ default.hg19.idlarge = [
 ]
 default.hg19.smallname = "small.fa"
 default.hg19.fullname = "hg19.tar"
-default.dir.hg19 = "#{default.dir.data}/#{default.hg19.dirname}"
 
 # HG38
 default.hg38.dirname = "hg38"
@@ -78,4 +77,4 @@ default.hg38.idlarge = [
 ]
 default.hg38.smallname = "small.fa"
 default.hg38.fullname = "hg38.tar"
-default.dir.hg38 = "#{default.dir.data}/#{default.hg38.dirname}"
+

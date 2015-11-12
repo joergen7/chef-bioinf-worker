@@ -6,6 +6,7 @@
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 
+hg19_dir = "#{node.dir.hg19}/#{node.hg19.dirname}"
 
 hg19_small = [
 "chr1_gl000191_random",
@@ -80,13 +81,13 @@ hg19_small = [
 ]
 
 directory node.dir.data
-directory node.dir.hg19
+directory hg19_dir
 
 node.hg19.idlarge.each { |id|
 	
   url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/#{id}.fa.gz"
   
-  remote_file "#{node.dir.hg19}/#{File.basename( url )}" do
+  remote_file "#{hg19_dir}/#{File.basename( url )}" do
     action :create_if_missing
     source url
     retries 1
@@ -94,8 +95,8 @@ node.hg19.idlarge.each { |id|
   
   bash "gunzip #{id}" do
     code "gunzip -k #{id}.fa.gz"
-    cwd node.dir.hg19
-    not_if "#{File.exists?( "#{node.dir.hg19}/#{id}.fa" ) || File.exists?( "#{node.dir.hg19}/#{node.hg19.fullname}" )}"
+    cwd hg19_dir
+    not_if "#{File.exists?( "#{hg19_dir}/#{id}.fa" ) || File.exists?( "#{hg19_dir}/#{node.hg19.fullname}" )}"
   end
 }
 
@@ -103,7 +104,7 @@ hg19_small.each { |id|
 	
   url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/#{id}.fa.gz"
   
-  remote_file "#{node.dir.hg19}/#{File.basename( url )}" do
+  remote_file "#{hg19_dir}/#{File.basename( url )}" do
     action :create_if_missing
     source url
     retries 1
@@ -112,13 +113,13 @@ hg19_small.each { |id|
 
 bash "hg19_concatenate_small_fa" do
   code "cat #{hg19_small.map { |id| "#{id}.fa.gz" }.join( " " )} | gunzip -c > #{node.hg19.smallname}"
-  cwd node.dir.hg19
-  not_if "#{File.exists?( "#{node.dir.hg19}/#{node.hg19.smallname}" ) || File.exists?( "#{node.dir.hg19}/#{node.hg19.fullname}" )}"
+  cwd hg19_dir
+  not_if "#{File.exists?( "#{hg19_dir}/#{node.hg19.smallname}" ) || File.exists?( "#{hg19_dir}/#{node.hg19.fullname}" )}"
 end
 
 bash "hg19_tar_fa" do
   code "tar --remove-files -cf #{node.hg19.fullname} #{node.hg19.idlarge.map { |id| "#{id}.fa" }.join( " " )} #{node.hg19.smallname}"
-  cwd node.dir.hg19
-  not_if "#{File.exists?( "#{node.dir.hg19}/#{node.hg19.fullname}" )}"
+  cwd hg19_dir
+  not_if "#{File.exists?( "#{hg19_dir}/#{node.hg19.fullname}" )}"
 end
   
