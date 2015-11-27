@@ -1,9 +1,11 @@
+# coding: utf-8
 #
 # Cookbook Name:: chef-bioinf-worker
 # Recipe:: default
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
+include_recipe "chef-bioinf-worker::annodb_hg19"
 include_recipe "chef-bioinf-worker::annodb_hg38"
 include_recipe "chef-bioinf-worker::annovar"
 include_recipe "chef-bioinf-worker::bdgp6"
