@@ -6,7 +6,7 @@
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 
-hg19_dir = "#{node.dir.hg19}/#{node.hg19.dirname}"
+hg19_dir = "#{node.dir.data}/#{node.hg19.dirname}"
 
 hg19_small = [
 "chr1_gl000191_random",
