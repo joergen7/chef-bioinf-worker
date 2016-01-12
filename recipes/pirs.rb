@@ -28,7 +28,7 @@ file pirs_bin do
   content <<-SCRIPT
 #!/usr/bin/env bash
 #{pirs_dir}/pirs $@ \
--s #{pirs_dir}/Profiles/Base-Calling_Profiles/humNew.PE100.matrix.gz \
+-s #{pirs_dir}/Profiles/Base-Calling_Profiles/humNew.PE100.matrix.gz
   SCRIPT
   mode '0755'
 end
