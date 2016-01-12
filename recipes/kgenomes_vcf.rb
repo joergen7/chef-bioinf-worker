@@ -27,8 +27,7 @@ vcf_set = ["chr1.phase3_shapeit2_mvncall_integrated_v5a",
            "chr21.phase3_shapeit2_mvncall_integrated_v5a",
            "chr22.phase3_shapeit2_mvncall_integrated_v5a",
            "chrX.phase3_shapeit2_mvncall_integrated_v1b",
-           "chrY.phase3_integrated_v1b",
-           "wgs.phase3_shapeit2_mvncall_integrated_v5b"
+           "chrY.phase3_integrated_v1b"
           ]
 
 
