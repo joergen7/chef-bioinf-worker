@@ -29,7 +29,6 @@ file pirs_bin do
 #!/usr/bin/env bash
 #{pirs_dir}/pirs $@ \
 -s #{pirs_dir}/Profiles/Base-Calling_Profiles/humNew.PE100.matrix.gz \
--b #{pirs_dir}/Profiles/InDel_Profiles/phixv2.InDel.matrix
   SCRIPT
   mode '0755'
 end
