@@ -15,3 +15,9 @@ remote_file "#{grch37_dir}/#{File.basename( grch37_link )}" do
   source grch37_link
   retries 1
 end
+
+bash "extract_grch37" do
+  code "gzip -d #{grch37_dir}/#{File.basename( grch37_link )}"
+  not_if "#{File.exists?( "#{grch37_dir}/hs37d5.fa" )}"
+  ignore_failure true
+end
