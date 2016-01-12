@@ -14,6 +14,7 @@ remote_file "#{grch37_dir}/#{File.basename( grch37_link )}" do
   action :create_if_missing
   source grch37_link
   retries 1
+  not_if "#{File.exists?( "#{grch37_dir}/hs37d5.fa" )}"  
 end
 
 bash "extract_grch37" do
