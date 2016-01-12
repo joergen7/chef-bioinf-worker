@@ -6,9 +6,11 @@
 
 # package "samtools"
 
-samtools_link = "http://downloads.sourceforge.net/project/samtools/samtools/1.2/samtools-1.2.tar.bz2"
+samtools_vsn = "1.3"
+
+samtools_link = "http://downloads.sourceforge.net/project/samtools/samtools/#{samtools_vsn}/samtools-#{samtools_vsn}.tar.bz2"
 samtools_tar  = "#{node.dir.archive}/#{File.basename( samtools_link )}"
-samtools_dir  = "#{node.dir.software}/samtools-1.2"
+samtools_dir  = "#{node.dir.software}/samtools-#{samtools_vsn}"
 
 
 directory node.dir.archive
