@@ -4,9 +4,10 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-trimmomatic_link = "http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.32.zip"
+trimmomatic_vsn = "0.35"
+trimmomatic_link = "http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-#{trimmomatic_vsn}.zip"
 trimmomatic_zip  = "#{node.dir.archive}/#{File.basename( trimmomatic_link )}"
-trimmomatic_dir  = "#{node.dir.software}/Trimmomatic-0.32"
+trimmomatic_dir  = "#{node.dir.software}/Trimmomatic-#{trimmomatic_vsn}"
 
 
 
@@ -31,7 +32,7 @@ end
 file "#{node.dir.bin}/trimmomatic" do
   content <<-SCRIPT
 #!/usr/bin/env bash
-java -jar #{trimmomatic_dir}/trimmomatic-0.32.jar $@
+java -jar #{trimmomatic_dir}/trimmomatic-#{trimmomatic_vsn}.jar $@
   SCRIPT
   mode "0755"
 end

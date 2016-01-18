@@ -4,9 +4,10 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-sratools_link = "http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.4.2-4/sratoolkit.2.4.2-ubuntu64.tar.gz"
+sratools_vsn = "2.5.7"
+sratools_link = "http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/#{sratools_vsn}/sratoolkit.#{sratools_vsn}-ubuntu64.tar.gz"
 sratools_tar  = "#{node.dir.archive}/#{File.basename( sratools_link )}"
-sratools_dir  = "#{node.dir.software}/sratoolkit.2.4.2-ubuntu64"
+sratools_dir  = "#{node.dir.software}/sratoolkit.#{sratools_vsn}-ubuntu64"
 
 
 directory node.dir.software
