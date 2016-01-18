@@ -22,7 +22,7 @@ pl_list = ["bwa_sam_converter", "get_mirdeep2_precursors", "prepare_signature",
           ] 
 
 
-remote_file mirdeep2_tar do
+remote_file mirdeep2_zip do
   action :create_if_missing
   source mirdeep2_link
   retries 1
