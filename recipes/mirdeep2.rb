@@ -29,7 +29,7 @@ remote_file mirdeep2_zip do
 end
 
 bash "extract_mirdeep2" do
-  code "unzip -o #{mirdeep2_tar} -d #{node.dir.software}"
+  code "unzip -o #{mirdeep2_zip} -d #{node.dir.software}"
   not_if "#{Dir.exists?( mirdeep2_dir )}"
 end
 
