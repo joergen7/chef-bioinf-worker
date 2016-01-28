@@ -5,7 +5,10 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-picard_vsn = "2.0.1"
+# this Picard versin requires Java 8
+# picard_vsn = "2.0.1"
+
+picard_vsn = "1.141"
 picard_link = "https://github.com/broadinstitute/picard/releases/download/#{picard_vsn}/picard-tools-#{picard_vsn}.zip"
 picard_zip = "#{node.dir.archive}/#{File.basename( picard_link )}"
 picard_dir = "#{node.dir.software}/picard-tools-#{picard_vsn}"
