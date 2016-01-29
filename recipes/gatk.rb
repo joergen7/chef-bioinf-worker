@@ -24,6 +24,6 @@ bash "extract_gatk" do
 end
 
 file gatk_bin do
-  content "java -Xmx16g -jar #{gatk_dir}/GenomeAnalysisTK.jar $@"
+  content "java -Xmx32g -jar #{gatk_dir}/GenomeAnalysisTK.jar $@"
   mode "0755"
 end
