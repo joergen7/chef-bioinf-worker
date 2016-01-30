@@ -31,7 +31,7 @@ vcf_set = ["chr1.phase3_shapeit2_mvncall_integrated_v5a",
           ]
 
 
-vcf_dir = "#{node.dir.data}/vcf_grch37"
+vcf_dir = "#{node.dir.data}/kgenomes_vcf_13"
 
 directory node.dir.data
 directory vcf_dir
