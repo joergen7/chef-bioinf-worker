@@ -63,3 +63,11 @@ end
 link "#{node.dir.bin}/tabix" do
   to "#{htslib_dir}/tabix"
 end
+
+link "#{node.dir.bin}/bgzip" do
+  to "#{htslib_dir}/bgzip"
+end
+
+link "#{node.dir.bin}/htsfile" do
+  to "#{htslib_dir}/htsfile"
+end
