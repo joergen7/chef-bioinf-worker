@@ -10,6 +10,7 @@ gatk_dir = "#{node.dir.software}/gatk-3.5"
 gatk_bin = "#{node.dir.bin}/gatk"
 
 include_recipe "chef-bioinf-worker::java"
+include_recipe "chef-bioinf-worker::r-base"
 
 directory node.dir.archive
 directory node.dir.software

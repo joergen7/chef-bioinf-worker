@@ -4,6 +4,6 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-include_recipe "chef-bioinf-worker::r_base"
+include_recipe "chef-bioinf-worker::r-base"
 
 package "r-bioc-cummerbund"

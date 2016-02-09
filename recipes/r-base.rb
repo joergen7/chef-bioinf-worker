@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chef-bioinf-worker
-# Recipe:: r_base
+# Recipe:: r-base
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
