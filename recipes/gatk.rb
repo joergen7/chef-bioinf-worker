@@ -12,6 +12,8 @@ gatk_bin = "#{node.dir.bin}/gatk"
 include_recipe "chef-bioinf-worker::java"
 include_recipe "chef-bioinf-worker::r-base"
 
+package "r-cran-ggplot2"
+
 directory node.dir.archive
 directory node.dir.software
 directory gatk_dir
