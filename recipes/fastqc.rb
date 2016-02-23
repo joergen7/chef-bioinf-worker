@@ -29,7 +29,10 @@ bash "extract_fastqc" do
   not_if "#{Dir.exists?( fastqc_dir )}"
 end
 
+bash "fastqc_set_permission" do
+  code "chmod a+x #{fastqc_dir}/fastqc"
+end
+
 link "#{node.dir.bin}/fastqc" do
   to "#{fastqc_dir}/fastqc"
-  mode "775"
 end
