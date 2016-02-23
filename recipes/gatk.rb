@@ -24,6 +24,7 @@ end
 
 bash "extract_gatk" do
   code "tar xjf #{gatk_tar} -C #{gatk_dir}"
+  not_if "#{File.exists?( "#{gatk_dir}/GenomeAnalysisTK.jar" )}"
 end
 
 file gatk_bin do
