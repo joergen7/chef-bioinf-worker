@@ -4,7 +4,13 @@
 #
 # Copyright (c) 2016 Jörgen Brandt, All Rights Reserved.
 
-package "python-pip"
+include_recipe "chef-bioinf-worker::numpy"
+
+package "libfreetype6-dev"
+package "libxft-dev"
+package "libcurl4-gnutls-dev"
+package "liblapack-dev"
+package "gfortran"
 
 bash "install_deeptools" do
   code "pip install deeptools"
