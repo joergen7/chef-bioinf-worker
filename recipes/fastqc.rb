@@ -4,7 +4,8 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-fastqc_link = "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.4.zip"
+fastqc_vsn = "0.11.5"
+fastqc_link = "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v#{fastqc_vsn}.zip"
 fastqc_zip = "#{node.dir.archive}/#{File.basename( fastqc_link )}"
 fastqc_dir = "#{node.dir.software}/FastQC"
 
