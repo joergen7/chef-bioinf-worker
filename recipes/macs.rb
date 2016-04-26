@@ -22,12 +22,6 @@ bash "extract_macs" do
   not_if "#{Dir.exists?( macs_dir )}"
 end
 
-bash "build_macs" do
-  code "python setup.py build"
-  cwd macs_dir
-  not_if "#{Dir.exists?( "#{macs_dir}/build" )}"
-end
-
 bash "install_macs" do
   code "python setup.py install"
   cwd macs_dir
