@@ -14,5 +14,6 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[chef-bioinf-worker::_common]
       - recipe[chef-bioinf-worker::default]
     attributes:
