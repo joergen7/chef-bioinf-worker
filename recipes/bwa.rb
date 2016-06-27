@@ -6,7 +6,8 @@
 
 # package "bwa"
 
-bwa_link = "http://downloads.sourceforge.net/project/bio-bwa/bwakit/bwakit-0.7.12_x64-linux.tar.bz2"
+bwa_vsn  = "0.7.15"
+bwa_link = "http://downloads.sourceforge.net/project/bio-bwa/bwakit/bwakit-#{bwa_vsn}_x64-linux.tar.bz2"
 bwa_tar  = "#{node.dir.archive}/#{File.basename( bwa_link )}"
 bwa_dir  = "#{node.dir.software}/bwa.kit"
 

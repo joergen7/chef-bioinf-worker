@@ -16,3 +16,4 @@ bin/*
 .kitchen.local.yml
 
 files/GenomeAnalysisTK-3.5.tar.bz2
+files/GenomeAnalysisTK-3.6.tar.bz2
