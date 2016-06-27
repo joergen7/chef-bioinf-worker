@@ -32,6 +32,7 @@ end
 
 bash "fastqc_set_permission" do
   code "chmod a+x #{fastqc_dir}/fastqc"
+  not_if "#{File.executable?( "#{fastqc_dir}/fastqc" )}"
 end
 
 link "#{node.dir.bin}/fastqc" do
