@@ -6,13 +6,14 @@
 
 # package "bowtie2"
 
-bowtie2_link = "http://downloads.sourceforge.net/project/bowtie-bio/bowtie2/2.2.6/bowtie2-2.2.6-linux-x86_64.zip"
-bowtie2_zip  = "#{node.dir.archive}/#{File.basename( bowtie2_link )}"
-bowtie2_dir  = "#{node.dir.software}/bowtie2-2.2.6"
+bowtie2_vsn  = "2.2.9"
+bowtie2_link = "http://downloads.sourceforge.net/project/bowtie-bio/bowtie2/#{bowtie2_vsn}/bowtie2-#{bowtie2_vsn}-linux-x86_64.zip"
+bowtie2_zip  = "#{node["dir"]["archive"]}/#{File.basename( bowtie2_link )}"
+bowtie2_dir  = "#{node["dir"]["software"]}/bowtie2-#{bowtie2_vsn}"
 
 
-directory node.dir.archive
-directory node.dir.software
+directory node["dir"]["archive"]
+directory node["dir"]["software"]
 
 package "unzip"
 
@@ -23,14 +24,14 @@ remote_file bowtie2_zip do
 end
 
 bash "extract_bowtie2" do
-  code "unzip -o #{bowtie2_zip} -d #{node.dir.software}"
-  not_if "#{Dir.exists?( bowtie2_dir )}"
+  code "unzip -o #{bowtie2_zip} -d #{node["dir"]["software"]}"
+  creates bowtie2_dir
 end
 
-link "#{node.dir.bin}/bowtie2" do
+link "#{node["dir"]["bin"]}/bowtie2" do
   to "#{bowtie2_dir}/bowtie2"
 end
 
-link "#{node.dir.bin}/bowtie2-build" do
+link "#{node["dir"]["bin"]}/bowtie2-build" do
   to "#{bowtie2_dir}/bowtie2-build"
 end
