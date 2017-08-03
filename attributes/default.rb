@@ -1,24 +1,24 @@
 # directories to be created
-default.dir.software = "/opt/software"
-default.dir.archive  = "/opt/archive"
-default.dir.jar      = "#{default.dir.software}/jar"
-default.dir.data     = "/opt/data"
-default.dir.etc      = "/usr/local/etc"
+default["dir"]["software"] = "/opt/software"
+default["dir"]["archive"]  = "/opt/archive"
+default["dir"]["jar"]      = "#{default["dir"]["software"]}/jar"
+default["dir"]["data"]     = "/opt/data"
+default["dir"]["etc"]      = "/usr/local/etc"
 
 # directories existent by default
-default.dir.bin      = "/usr/local/bin"
+default["dir"]["bin"]      = "/usr/local/bin"
 
 
 
 # squid
-default.dir.squid  = "#{default.dir.software}/squid-1.9g"
+default["dir"]["squid"]    = "#{default["dir"]["software"]}/squid-1.9g"
 
 
 
 
 # HG19
-default.hg19.dirname = "hg19"
-default.hg19.idlarge = [
+default["hg19"]["dirname"] = "hg19"
+default["hg19"]["idlarge"] = [
 "chr1",
 "chr2",
 "chr3",
@@ -44,12 +44,12 @@ default.hg19.idlarge = [
 "chrX",
 "chrY"
 ]
-default.hg19.smallname = "small.fa"
-default.hg19.fullname = "hg19.tar"
+default["hg19"]["smallname"] = "small.fa"
+default["hg19"]["fullname"] = "hg19.tar"
 
 # HG38
-default.hg38.dirname = "hg38"
-default.hg38.idlarge = [
+default["hg38"]["dirname"] = "hg38"
+default["hg38"]["idlarge"] = [
 "chr1",
 "chr2",
 "chr3",
@@ -75,6 +75,6 @@ default.hg38.idlarge = [
 "chrX",
 "chrY"
 ]
-default.hg38.smallname = "small.fa"
-default.hg38.fullname = "hg38.tar"
+default["hg38"]["smallname"] = "small.fa"
+default["hg38"]["fullname"] = "hg38.tar"
 
