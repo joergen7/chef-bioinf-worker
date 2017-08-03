@@ -6,7 +6,7 @@
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 
-hg38_dir = "#{node.dir.data}/#{node.hg38.dirname}"
+hg38_dir = "#{node["dir"]["data"]}/#{node["hg38"]["dirname"]}"
 
 hg38_small = [
 "chr1_GL383518v1_alt",
@@ -442,10 +442,10 @@ hg38_small = [
 "chrY_KI270740v1_random"
 ]
 
-directory node.dir.data
+directory node["dir"]["data"]
 directory hg38_dir
 
-node.hg38.idlarge.each { |id|
+node["hg38"]["idlarge"].each { |id|
 	
   url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/#{id}.fa.gz"
   
@@ -458,7 +458,7 @@ node.hg38.idlarge.each { |id|
   bash "gunzip #{id}" do
     code "gunzip -k #{id}.fa.gz"
     cwd hg38_dir
-    not_if "#{File.exists?( "#{hg38_dir}/#{id}.fa" ) || File.exists?( "#{hg38_dir}/#{node.hg38.fullname}" )}"
+    not_if "#{File.exists?( "#{hg38_dir}/#{id}.fa" ) || File.exists?( "#{hg38_dir}/#{node["hg38"]["fullname"]}" )}"
   end
 }
 
@@ -474,14 +474,14 @@ hg38_small.each { |id|
 }
 
 bash "hg38_concatenate_small_fa" do
-  code "cat #{hg38_small.map { |id| "#{id}.fa.gz" }.join( " " )} | gunzip -c > #{node.hg38.smallname}"
+  code "cat #{hg38_small.map { |id| "#{id}.fa.gz" }.join( " " )} | gunzip -c > #{node["hg38"]["smallname"]}"
   cwd hg38_dir
-  not_if "#{File.exists?( "#{hg38_dir}/#{node.hg38.smallname}" ) || File.exists?( "#{hg38_dir}/#{node.hg38.fullname}" )}"
+  not_if "#{File.exists?( "#{hg38_dir}/#{node["hg38"]["smallname"]}" ) || File.exists?( "#{hg38_dir}/#{node["hg38"]["fullname"]}" )}"
 end
 
 bash "hg38_tar_fa" do
-  code "tar --remove-files -cf #{node.hg38.fullname} #{node.hg38.idlarge.map { |id| "#{id}.fa" }.join( " " )} #{node.hg38.smallname}"
+  code "tar --remove-files -cf #{node["hg38"]["fullname"]} #{node["hg38"]["idlarge"].map { |id| "#{id}.fa" }.join( " " )} #{node["hg38"]["smallname"]}"
   cwd hg38_dir
-  not_if "#{File.exists?( "#{hg38_dir}/#{node.hg38.fullname}" )}"
+  not_if "#{File.exists?( "#{hg38_dir}/#{node["hg38"]["fullname"]}" )}"
 end
   
