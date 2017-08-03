@@ -5,15 +5,15 @@
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 varscan_link = "http://downloads.sourceforge.net/project/varscan/VarScan.v2.3.9.jar"
-varscan_jar  = "#{node.dir.jar}/#{File.basename( varscan_link )}"
+varscan_jar  = "#{node["dir"]["jar"]}/#{File.basename( varscan_link )}"
 
 
 
 
 include_recipe "chef-bioinf-worker::java"
 
-directory node.dir.software
-directory node.dir.jar
+directory node["dir"]["software"]
+directory node["dir"]["jar"]
 
 remote_file varscan_jar do
   source varscan_link
@@ -21,7 +21,7 @@ remote_file varscan_jar do
   retries 1
 end
 
-file "#{node.dir.bin}/varscan" do
+file "#{node["dir"]["bin"]}/varscan" do
   content <<-SCRIPT
 #!/usr/bin/env bash
 java -jar #{varscan_jar} $@
