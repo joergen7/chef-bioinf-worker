@@ -16,6 +16,7 @@ directory node["dir"]["archive"]
 directory node["dir"]["software"]
 
 package "unzip"
+package "libtbb-dev"
 
 remote_file bowtie2_zip do
   action :create_if_missing
