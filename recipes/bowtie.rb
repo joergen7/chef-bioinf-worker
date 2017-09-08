@@ -7,10 +7,10 @@
 # package "bowtie"
 
 
-
-bowtie_link = "http://downloads.sourceforge.net/project/bowtie-bio/bowtie/1.1.2/bowtie-1.1.2-linux-x86_64.zip"
+bowtie_vsn  = "1.2.1.1"
+bowtie_link = "http://downloads.sourceforge.net/project/bowtie-bio/bowtie/#{bowtie_vsn}/bowtie-#{bowtie_vsn}-linux-x86_64.zip"
 bowtie_zip  = "#{node["dir"]["archive"]}/#{File.basename( bowtie_link )}"
-bowtie_dir  = "#{node["dir"]["software"]}/bowtie-1.1.2"
+bowtie_dir  = "#{node["dir"]["software"]}/bowtie-#{bowtie_vsn}"
 
 
 directory node["dir"]["archive"]
